@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Registration</title>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="/js/users.js"></script>
+<link rel="stylesheet" type="text/css" href="/css/main.css">
+</head>
+<body>
+	<div id="register-form">
+		<form name="registerForm" id="registerForm" method="post">
+			<fieldset>
+				<legend>Enter Your Details</legend>
+				<p><strong>* All Fields are required </strong></p>
+				<p>
+					<label id="firstNameLabel" for="firstName">FirstName:</label>
+					<br>
+					<input name="firstName" id="firstName"  maxlength="20" type="text"/>
+				</p>
+				<p>
+					<label id="lastNamelabel" for="lastName">LastName:</label>
+					<br>
+					<input name="lastName" id="lastName" maxlength="20" type="text"/>
+				</p>
+				
+				<p>
+					<label id="usernameLabel" for="username">Username:</label>
+					<br>
+					<input name="username" id="username"  maxlength="20" type="text"/>
+				</p>
+				<p>
+					<label id="passwordlabel" for="password">Password:</label>
+					<br>
+					<input name="password" id="password" maxlength="20" type="password"/>
+				</p>
+				<p>
+					<label id="emailLabel" for="email">Email:</label>
+					<br>
+					<input name="email" id="email"  maxlength="20" type="text"/>
+				</p>
+				<p>
+					<button id ="register" type="submit" name="submit">Register</button>
+				</p>
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>

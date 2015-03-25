@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="/js/login.js"></script>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<body>
+	<div id="login-form">
+		<form name="loginForm" id="loginForm" method="post">
+			<fieldset>
+				<legend>Enter Your Login Credentials</legend>
+				<p>
+					<label id="usernameLabel" for="username">Username:</label>
+					<br>
+					<input name="username" id="username"  maxlength="20" type="text"/>
+				</p>
+				<p>
+					<label id="passwordlabel" for="password">Password:</label>
+					<br>
+					<input name="password" id="password" maxlength="20" type="password"/>
+				</p>
+				<p>
+					<button id ="login" type="submit" name="submit">Submit</button>
+					<a href="/login/registeration" >Register</a>
+				</p>
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>
