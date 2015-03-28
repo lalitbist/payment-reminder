@@ -29,7 +29,7 @@ public class PaymentCards implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = 1069071200558416593L;
 	private Integer id;
-	private User user;
+	private UserModel user;
 	private String companyName;
 	private String cardName;
 	private BigDecimal balance;
@@ -43,7 +43,7 @@ public class PaymentCards implements java.io.Serializable {
 	public PaymentCards() {
 	}
 
-	public PaymentCards(User user, String cardName,
+	public PaymentCards(UserModel user, String cardName,
 			BigDecimal minimumDueAmount, Date paymentDueDate,
 			BigDecimal actualPaidAmount, String paymentSchedule) {
 		this.user = user;
@@ -54,7 +54,7 @@ public class PaymentCards implements java.io.Serializable {
 		this.paymentSchedule = paymentSchedule;
 	}
 
-	public PaymentCards(User user, String companyName, String cardName,
+	public PaymentCards(UserModel user, String companyName, String cardName,
 			BigDecimal balance, BigDecimal minimumDueAmount,
 			Date paymentDueDate, BigDecimal actualPaidAmount,
 			String paymentSchedule, String accountType, String actualPaymentDate) {
@@ -83,11 +83,11 @@ public class PaymentCards implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
-	public User getUser() {
+	public UserModel getUser() {
 		return this.user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserModel user) {
 		this.user = user;
 	}
 

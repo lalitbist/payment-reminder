@@ -27,7 +27,7 @@ public class Reminder implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = -2171386745391620420L;
 	private Integer reminderId;
-	private User user;
+	private UserModel user;
 	private String reminderOptions;
 	private String pollScheduler;
 	private Date lastPollDate;
@@ -35,7 +35,7 @@ public class Reminder implements java.io.Serializable {
 	public Reminder() {
 	}
 
-	public Reminder(User user, String reminderOptions, String pollScheduler,
+	public Reminder(UserModel user, String reminderOptions, String pollScheduler,
 			Date lastPollDate) {
 		this.user = user;
 		this.reminderOptions = reminderOptions;
@@ -56,11 +56,11 @@ public class Reminder implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	public User getUser() {
+	public UserModel getUser() {
 		return this.user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(UserModel user) {
 		this.user = user;
 	}
 

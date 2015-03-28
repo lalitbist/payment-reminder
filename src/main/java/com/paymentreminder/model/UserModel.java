@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Table(name = "user", catalog = "payment_assitant_db", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "username"),
 		@UniqueConstraint(columnNames = "email") })
-public class User implements java.io.Serializable {
+public class UserModel implements java.io.Serializable {
 
 	/**
 	 * 
@@ -57,10 +57,10 @@ public class User implements java.io.Serializable {
 	private Set<Reminder> reminders;
 	private Set<PaymentCards> paymentCardses;
 
-	public User() {
+	public UserModel() {
 	}
 
-	public User(String firstName, String username, String email,
+	public UserModel(String firstName, String username, String email,
 			String userType, String password, Date createdOn, String createdBy) {
 		this.firstName = firstName;
 		this.username = username;
@@ -71,7 +71,7 @@ public class User implements java.io.Serializable {
 		this.createdBy = createdBy;
 	}
 
-	public User(String firstName, String lastName, String username,
+	public UserModel(String firstName, String lastName, String username,
 			String email, String phone, String address1, String address2,
 			String city, String stateOrProvince, String zipcode,
 			String usercol, String userType, String password, Date createdOn,

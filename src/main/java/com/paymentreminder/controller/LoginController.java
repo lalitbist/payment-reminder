@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.paymentreminder.model.User;
+import com.paymentreminder.model.UserModel;
 
 /**
  * 
@@ -29,14 +29,14 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/process", method = RequestMethod.POST)
-	public String processLogin(@RequestBody User user, BindingResult result, 
+	public String processLogin(@RequestBody UserModel userModel, BindingResult result, 
 			HttpServletRequest request){
 		if (result.hasErrors()) {
 			System.out.println("Error fields"+ result.getFieldErrors());
 			return "{ \"message\" :\"error\"}";
 		}
-		System.out.println(user.getUsername() + " "+user.getPassword());
-		String returnMessage = "{ \"message\" :\"success\", \"username\":\""+user.getUsername()+"\"}";
+		System.out.println(userModel.getUsername() + " "+userModel.getPassword());
+		String returnMessage = "{ \"message\" :\"success\", \"username\":\""+userModel.getUsername()+"\"}";
 		return returnMessage;
 	}
 	

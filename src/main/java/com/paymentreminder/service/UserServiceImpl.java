@@ -3,13 +3,15 @@ package com.paymentreminder.service;
 import java.util.List;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+
 import com.paymentreminder.dao.UserDao;
-import com.paymentreminder.model.User;
+import com.paymentreminder.model.UserModel;
 
 /**
  * 
@@ -24,21 +26,32 @@ public class UserServiceImpl implements UserService {
 	
 	@Transactional(readOnly = true)
 	@Override
-	public List<User> getAllUsers() {
-		return (List<User>) userDao.getAllUsers();
+	public List<UserModel> getAllUsers() {
+		return (List<UserModel>) userDao.getAllUsers();
 	}
 
 	@Transactional(readOnly = true)
 	@Override
-	public User getUserById(Integer userId) {
+	public UserModel getUserById(Integer userId) {
 		return userDao.findByuserId(userId);
 	}
 
 	@Override
-	public User saveOrUpdate(User user) {
-		User userAfterSave = userDao.saveAndFlush(user);
-		//userDao.save(user);
+	@Transactional(readOnly = false)
+	public UserModel saveOrUpdate(UserModel userModel) {
+		UserModel userAfterSave = userDao.saveAndFlush(userModel);
+		//userDao.save(userModel);
 		return userAfterSave;
+	}
+
+	@Transactional(readOnly = true)
+	@Override
+	public UserModel getUserByEmail(String email) {
+		UserModel userModel = userDao.findByemail(email);
+		if(userModel == null){
+			return (UserModel)new Object();
+		}
+		return userModel;
 	}
 
 }

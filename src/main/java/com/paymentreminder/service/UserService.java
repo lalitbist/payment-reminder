@@ -2,17 +2,19 @@ package com.paymentreminder.service;
 
 import java.util.List;
 
-import com.paymentreminder.model.User;
+import com.paymentreminder.model.UserModel;
 /**
  * 
  * @author lalit_bist
  *
  */
 public interface UserService {
-	public List<User> getAllUsers();
+	public List<UserModel> getAllUsers();
 	
-	public User getUserById(Integer userId);
+	public UserModel getUserById(Integer userId);
 	
-	public User saveOrUpdate(User user);
+	public UserModel saveOrUpdate(UserModel user);
+	
+	public UserModel getUserByEmail(String email);
 
 }
