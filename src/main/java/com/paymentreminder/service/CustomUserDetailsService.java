@@ -6,19 +6,21 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.paymentreminder.dao.UserDao;
 import com.paymentreminder.model.UserModel;
 
 @Service
+@Transactional 
 public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired 
-	UserService userService;
-	
+	UserDao userDao;
 	@Override
 	public User loadUserByUsername(String email)
 			throws UsernameNotFoundException {
-		UserModel userModel = userService.getUserByEmail(email);
+		UserModel userModel = userDao.findByemail(email);
 		
 		System.out.println("emai "+email);
 		if(userModel == null){

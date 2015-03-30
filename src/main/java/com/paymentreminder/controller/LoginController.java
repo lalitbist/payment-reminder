@@ -29,8 +29,11 @@ public class LoginController {
 	UserService userService;
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView getLoginPage(){
+	public ModelAndView getLoginPage(@RequestParam(value = "error", required = false) String error){
 		ModelAndView login = new ModelAndView("/login/login.html");
+		if(error != null){
+			login.addObject("error", "Invalid username or password");
+		}
 		return login;
 		
 	}
@@ -60,5 +63,10 @@ public class LoginController {
 		
 	}
 	
-	
+	@RequestMapping(value = "/login/success", method = RequestMethod.GET)
+	public String loginSuccessPage(){
+		//ModelAndView login = new ModelAndView("/landing/landing.html");
+		return "redirect:/landing/landing.html";
+		
+	}
 }

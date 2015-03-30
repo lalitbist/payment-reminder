@@ -24,20 +24,21 @@ public class SercurityConfig extends WebSecurityConfigurerAdapter {
 	
 	 @Override
 	    protected void configure(HttpSecurity http) throws Exception {
-	        http.authorizeRequests()
+	        http
+	        	.authorizeRequests()
 	                .antMatchers("/", "/login", "/process","/registeration").permitAll()
-	                .antMatchers("/users/**").hasAuthority("ADMIN") //This is a synonym for hasRole("ADMIN")
+	                .antMatchers("/welcome", "/users/**").hasAuthority("ADMIN") //This is a synonym for hasRole("ADMIN")
 	                .anyRequest().fullyAuthenticated()
 	                .and()
-	                .formLogin()
+	            .formLogin()
 	                .loginPage("/login")
-	                .failureUrl("/login")
-	                .defaultSuccessUrl("/")
+	                .failureUrl("/login?error")
+	                .defaultSuccessUrl("/login/success")
 	                //.loginProcessingUrl("/login/process")
 	                .usernameParameter("email")
 	                .permitAll()
 	                .and()
-	                .logout()
+	            .logout()
 	                .logoutUrl("/logout")
 	                //.deleteCookies("remember-me")
 	                .logoutSuccessUrl("/")

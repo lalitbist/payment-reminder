@@ -10,13 +10,17 @@ $(document).ready(function() {
 			var ajaxCall = $.ajax({
 				type : "POST",
 				url : "/login", // URL of the login
-				contentType : "application/json; charset=utf-8",
-				dataType : "json",
-				data : JSON.stringify(user)
+				contentType : "application/x-www-form-urlencoded",
+				//dataType : "json",
+				data : user
 			});
 
 			ajaxCall.done(function(data) {
-				alert("Welcome! " + data.username);
+				if(data.error){
+					alert("Error While Login : " + data.error);
+				}else{
+					alert("Welcome! " + data.username);
+				}
 			});
 
 			ajaxCall.fail(function(jqXHR, textStatus) {
