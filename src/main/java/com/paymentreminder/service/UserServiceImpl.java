@@ -48,9 +48,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserModel getUserByEmail(String email) {
 		UserModel userModel = userDao.findByemail(email);
+		System.out.println("email "+email +" model "+userModel);
 		if(userModel == null){
-			return (UserModel)new Object();
+			return userModel;
 		}
+		System.out.println("usermdoel "+userModel);
 		return userModel;
 	}
 

@@ -14,7 +14,7 @@ $(document).ready(function() {
 			user.email = email;
 			var ajaxCall = $.ajax({
 				type : "POST",
-				url : "/users", // URL to save user
+				url : "/process", // URL to save user
 				contentType : "application/json; charset=utf-8",
 				dataType : "json",
 				data : JSON.stringify(user)

@@ -16,7 +16,6 @@ public interface UserDao extends JpaRepository<UserModel, Long>{ //can use JpaRe
 	@Query("from UserModel")// User classs name instead of table name
 	//@Query(value = "Select * from users",  nativeQuery = true) native sql query
 	public List<UserModel> getAllUsers();
-	
 	public UserModel findByuserId(Integer userId);
 	public UserModel findByemail(String email);
 

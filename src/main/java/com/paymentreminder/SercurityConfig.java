@@ -8,9 +8,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import com.paymentreminder.service.CustomUserDetailsService;
 /**
  * 
  * @author lalit_bist
@@ -21,34 +20,37 @@ import com.paymentreminder.service.CustomUserDetailsService;
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class SercurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
-	CustomUserDetailsService customUserDetailService;
+	UserDetailsService userDetailsService;
 	
 	 @Override
 	    protected void configure(HttpSecurity http) throws Exception {
 	        http.authorizeRequests()
-	                .antMatchers("/", "/login/**").permitAll()
+	                .antMatchers("/", "/login", "/process","/registeration").permitAll()
 	                .antMatchers("/users/**").hasAuthority("ADMIN") //This is a synonym for hasRole("ADMIN")
 	                .anyRequest().fullyAuthenticated()
 	                .and()
 	                .formLogin()
 	                .loginPage("/login")
-	                .failureUrl("/login?error")
+	                .failureUrl("/login")
+	                .defaultSuccessUrl("/")
+	                //.loginProcessingUrl("/login/process")
 	                .usernameParameter("email")
 	                .permitAll()
 	                .and()
 	                .logout()
 	                .logoutUrl("/logout")
-	                .deleteCookies("remember-me")
+	                //.deleteCookies("remember-me")
 	                .logoutSuccessUrl("/")
 	                .permitAll()
 	                .and()
-	                .rememberMe();
+	                .csrf().disable(); // for now
+	                //.rememberMe();
 	    }
 	 
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(customUserDetailService).passwordEncoder(
-				new BCryptPasswordEncoder());
+		auth.userDetailsService(userDetailsService)
+		.passwordEncoder(new BCryptPasswordEncoder());
 	}
 
 }

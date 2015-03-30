@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,11 +30,13 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	//@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(method = RequestMethod.GET)
 	public List<UserModel> getUsers(){
 		return userService.getAllUsers();
 	}
 	
+	//@PreAuthorize("hasAuthority('ADMIN') or hasRole('USER')")
 	@RequestMapping(value="/{id}", method = RequestMethod.GET )
 	public UserModel getUserById(@PathVariable("id") Integer userId){
 		return userService.getUserById(userId);
@@ -55,6 +58,5 @@ public class UserController {
 		String returnMessage = "{ \"message\" :\"success\", \"username\":\""+userModel.getUsername()+"\"}";
 		return returnMessage;
 	}
-	
 }
 
