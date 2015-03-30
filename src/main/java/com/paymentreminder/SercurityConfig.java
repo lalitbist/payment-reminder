@@ -26,10 +26,10 @@ public class SercurityConfig extends WebSecurityConfigurerAdapter {
 	    protected void configure(HttpSecurity http) throws Exception {
 	        http
 	        	.authorizeRequests()
-	                .antMatchers("/", "/login", "/process","/registeration").permitAll()
-	                .antMatchers("/welcome", "/users/**").hasAuthority("ADMIN") //This is a synonym for hasRole("ADMIN")
-	                .anyRequest().fullyAuthenticated()
-	                .and()
+	                //.antMatchers("/", "/login", "/process","/registeration").permitAll()
+	               	.antMatchers("/welcome", "/users/**").hasAuthority("ADMIN") //This is a synonym for hasRole("ADMIN")
+	               // .anyRequest().fullyAuthenticated()
+	               .and()
 	            .formLogin()
 	                .loginPage("/login")
 	                .failureUrl("/login?error")
