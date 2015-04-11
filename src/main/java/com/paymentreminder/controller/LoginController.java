@@ -4,7 +4,9 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,7 +33,8 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public ModelAndView getLoginPage(@RequestParam(value = "error", required = false) String error){
 		ModelAndView login = new ModelAndView("/login/login.html");
-		if(error != null){
+		
+		if(StringUtils.isNotBlank(error)){
 			login.addObject("error", "Invalid username or password");
 		}
 		return login;
@@ -63,10 +66,11 @@ public class LoginController {
 		
 	}
 	
-	@RequestMapping(value = "/login/success", method = RequestMethod.GET)
+	@RequestMapping(value = "/login/success", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public String loginSuccessPage(){
 		//ModelAndView login = new ModelAndView("/landing/landing.html");
-		return "redirect:/landing/landing.html";
+		String redirect= "{\"redirect\": \"/landing/landing.html\"}";
+		return redirect;
 		
 	}
 }

@@ -18,8 +18,8 @@ $(document).ready(function() {
 			ajaxCall.done(function(data) {
 				if(data.error){
 					alert("Error While Login : " + data.error);
-				}else{
-					alert("Welcome! " + data.username);
+				}else if(data.redirect){
+					window.location.href = data.redirect;
 				}
 			});
 
